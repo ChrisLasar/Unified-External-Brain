@@ -1,0 +1,6 @@
+@startuml
+' This is just for dev purpose. A smiliar code ist used for producion.
+' However there we follow the trick mentioned on stack overflow.
+!$approach="luhmann"
+!includeurl https://raw.githubusercontent.com/ChrisLasar/Unified-External-Brain/main/images/overview.puml
+@enduml
