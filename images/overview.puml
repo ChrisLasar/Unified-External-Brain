@@ -20,9 +20,17 @@
     "inbox": "Floating Notes",
     "source1": "Text <u><back:yellow>excerpts</back> from books</u>, articles etc."
     }
+!elseif ($approach == "para")
+!$label = {
+    "purpose": "Whatever",
+    "container1": "Projects",
+    "container2": "Areas",
+    "inbox": "Inbox",
+    "source1": "Text <u><back:yellow>excerpts</back> from books</u>, articles etc."
+    }
 !endif
 
-rectangle $label.purpose as Purpose
+rectangle "$label.purpose" as Purpose
 
 ' subgraph for alignment with surrounding nodes
 ' cf. http://www.forum.plantuml.net/10464/component-arrows-starting-wrong-side-component-components
