@@ -2,7 +2,7 @@
 !theme aws-orange
 
 'Comment following line before commit
-!$approach = "luhmann"
+'!$approach = "luhmann"
 
 !$label ?= { 
     "purpose": "Purpose", 
