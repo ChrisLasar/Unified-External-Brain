@@ -1,7 +1,18 @@
 @startuml
 !theme aws-orange
 
-rectangle Purpose
+'Comment following line before commit
+'!$approach = "luhmann"
+
+!$label ?= {"purpose": "Purpose"} 
+
+!if ($approach == "luhmann")
+!$label = {"purpose": "Writing"}
+!endif
+
+
+rectangle $label.purpose as Purpose
+
 cloud Brain [
 External Brain
 {{
