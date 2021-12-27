@@ -2,13 +2,14 @@
 !theme aws-orange
 
 'Comment following line before commit
-'!$approach = "luhmann"
+!$approach = "luhmann"
 
 !$label ?= { 
     "purpose": "Purpose", 
     "container1": "Container 1", 
     "container2": "Container 2",
-    "inbox": "Inbox"
+    "inbox": "Inbox",
+    "source1": "Source 1"
     } 
 
 !if ($approach == "luhmann")
@@ -16,7 +17,8 @@
     "purpose": "Writing",
     "container1": "Reference Notes",
     "container2": "Permanent Notes",
-    "inbox": "Floating Notes"
+    "inbox": "Floating Notes",
+    "source1": "Text <u><back:yellow>excerpts</back> from books</u>, articles etc."
     }
 !endif
 
@@ -58,7 +60,9 @@ together {
 Archive -[hidden]d-> Trash
 'Purpose -[hidden]d-> Inbox
 
-rectangle "Source 1" as Source1
+skinparam WrapWidth 100 
+
+rectangle "$label.source1" as Source1
 rectangle "Source 2" as Source2
 rectangle "Source n" as Source3
 
