@@ -22,7 +22,7 @@
     }
 !elseif ($approach == "para")
 !$label = {
-    "purpose": "Whatever",
+    "purpose": "Learning",
     "container1": "Projects",
     "container2": "Areas",
     "inbox": "Inbox",
@@ -66,7 +66,6 @@ together {
 
 ' Formating help
 Archive -[hidden]d-> Trash
-'Purpose -[hidden]d-> Inbox
 
 skinparam WrapWidth 100 
 
@@ -83,5 +82,22 @@ Inbox -u-> Brain
 Source1 -u-> Inbox
 Source2 -u-> Inbox
 Source3 -u-> Inbox
+
+'Interaction steps at right side 
+together {
+    label "**Interaction**" as level_purpose
+    label "connect & maintain" as level_brain
+    label " " as level_inbox
+    label " " as level_source
+}
+
+Purpose -[norank,hidden]r-> level_purpose
+Brain -[norank,hidden]r-> level_brain
+Inbox -[norank,hidden]r-> level_inbox
+Source1 -[norank,hidden]r-> level_source
+
+level_purpose -[dotted]d- level_brain : access 
+level_brain -[dotted]d- level_inbox : store
+level_inbox -[dotted]d- level_source : collect
 
 @enduml
