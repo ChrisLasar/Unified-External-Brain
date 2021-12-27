@@ -1,7 +1,7 @@
 @startuml
 !theme aws-orange
 
-skinparam classFontColor automatic
+skinparam BackgroundColor white
 
 'Comment following line before commit
 '!$approach = "luhmann"
