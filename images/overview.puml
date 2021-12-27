@@ -1,0 +1,55 @@
+@startuml
+!theme aws-orange
+
+rectangle Purpose
+cloud Brain [
+External Brain
+{{
+    folder c2 as "Container 2" {
+        label c2.1 as "<size:30><&document></size>"
+        label c2.2 as "<size:30><&document></size>"
+        label c2.3 as "<size:30><&document></size>"
+    }
+
+    folder c1 as "Container 1" {
+        label c1.1 as "<size:30><&document></size>"
+    }
+
+    label free1 as "<size:30><&document></size>"
+
+    c2.1 -> c1.1
+    c1.1 -> c2.3
+    c2.2 -> free1
+    free1 -> c1.1
+    c1.1 -> free1
+}}
+]
+
+rectangle Inbox
+
+together {
+    rectangle Trash
+    database Archive
+}
+
+' Formating help
+Archive -[hidden]d-> Trash
+Purpose -[hidden]d-> Inbox
+
+
+rectangle Source1
+rectangle Source2
+rectangle Source3
+
+
+Brain -r-> Archive
+Inbox -r-> Trash
+Purpose -d-> Brain
+Purpose -d-> Brain
+Inbox -u-> Brain
+
+Source1 -u-> Inbox
+Source2 -u-> Inbox
+Source3 -u-> Inbox
+
+@enduml
