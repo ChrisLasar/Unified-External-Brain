@@ -4,12 +4,21 @@
 'Comment following line before commit
 '!$approach = "luhmann"
 
-!$label ?= {"purpose": "Purpose"} 
+!$label ?= { 
+    "purpose": "Purpose", 
+    "container1": "Container 1", 
+    "container2": "Container 2",
+    "inbox": "Inbox"
+    } 
 
 !if ($approach == "luhmann")
-!$label = {"purpose": "Writing"}
+!$label = {
+    "purpose": "Writing",
+    "container1": "Reference Notes",
+    "container2": "Permanent Notes",
+    "inbox": "Floating Notes"
+    }
 !endif
-
 
 rectangle $label.purpose as Purpose
 
@@ -18,13 +27,13 @@ rectangle $label.purpose as Purpose
 cloud Brain #white [
 External Brain
 {{
-    folder c2 as "Container 2" {
+    folder "$label.container2" as c2 {
         label c2.1 as "<size:30><&document></size>"
         label c2.2 as "<size:30><&document></size>"
         label c2.3 as "<size:30><&document></size>"
     }
 
-    folder c1 as "Container 1" {
+    folder "$label.container1" as c1 {
         label c1.1 as "<size:30><&document></size>"
     }
 
@@ -38,7 +47,7 @@ External Brain
 }}
 ] 
 
-rectangle Inbox 
+folder "$label.inbox" as Inbox
 
 together {
     rectangle Trash
@@ -47,17 +56,15 @@ together {
 
 ' Formating help
 Archive -[hidden]d-> Trash
-Purpose -[hidden]d-> Inbox
+'Purpose -[hidden]d-> Inbox
 
-
-rectangle Source1
-rectangle Source2
-rectangle Source3
+rectangle "Source 1" as Source1
+rectangle "Source 2" as Source2
+rectangle "Source n" as Source3
 
 
 Brain -r-> Archive
 Inbox -r-> Trash
-Purpose -d-> Brain
 Purpose -d-> Brain
 Inbox -u-> Brain
 
