@@ -10,7 +10,7 @@ skinparam BackgroundColor white
     "purpose": "Purpose", 
     "container1": "Container 1", 
     "container2": "Container 2",
-    "container3": "",
+    "container3": "Container n",
     "inbox": "Inbox",
     "source1": "Source 1"
     } 
@@ -22,8 +22,9 @@ skinparam BackgroundColor white
 !if ($approach == "luhmann")
 !$label = {
     "purpose": "Writing",
-    "container1": "Reference Notes",
+    "container1": "Project Notes",
     "container2": "Permanent Notes",
+    "container3": "Reference Notes",
     "inbox": "Floating Notes",
     "source1": "Text <u><back:yellow>excerpts</back> from books</u>, articles etc."
     }
@@ -55,25 +56,25 @@ External Brain
         label "<size:30><&document></size>" as c1.1
     }
 
-    !if ($label.container3)
-        folder "$label.container3" as c3 {
-            label "<size:30><&document></size>" as c3.1
-            'file " " as c3.2
-        }
-        c3 <-[$style_workflow]-> c2
-
+    '!if ($label.container3)
+    folder "$label.container3" as c3 {
+        label "<size:30><&document></size>" as c3.1
+        'file " " as c3.2
+    }
+    !if ($approach != "luhmann")
+        c3 <-[$style_workflow]> c2
     !endif
+    '!endif
 
-    c1 <-[$style_workflow]-> c2
-
-    label "<size:30><&document></size>" as free1
+    c1 <-[$style_workflow]> c2
 
     c2.1 -[$style_connection]-> c1.1
     c1.1 -[$style_connection]-> c2.3
-    c2.2 -[$style_connection]-> free1
-    free1 -[$style_connection]-> c1.1
-    c1.1 -[$style_connection]-> free1
 
+    'label "<size:30><&document></size>" as free1
+    'c2.2 -[$style_connection]-> free1
+    'c1.1 -[$style_connection]-> free1
+    'free1 -[$style_connection]-> c1.1
 }}
 ] 
 
