@@ -14,6 +14,10 @@ skinparam BackgroundColor white
     "source1": "Source 1"
     } 
 
+!$style_workflow = "dashed,thickness=7"
+!$style_connection = "norank,thickness=2"
+
+
 !if ($approach == "luhmann")
 !$label = {
     "purpose": "Writing",
@@ -48,26 +52,27 @@ External Brain
     folder "$label.container1" as c1 {
         label c1.1 as "<size:30><&document></size>"
     }
+    c1 <-[$style_workflow]-> c2
 
     label free1 as "<size:30><&document></size>"
 
-    c2.1 -> c1.1
-    c1.1 -> c2.3
-    c2.2 -> free1
-    free1 -> c1.1
-    c1.1 -> free1
+    c2.1 -[$style_connection]-> c1.1
+    c1.1 -[$style_connection]-> c2.3
+    c2.2 -[$style_connection]-> free1
+    free1 -[$style_connection]-> c1.1
+    c1.1 -[$style_connection]-> free1
+
 }}
 ] 
 
 folder "$label.inbox" as Inbox
 
-together {
+'together {
     rectangle Trash
     database Archive
-}
-
+'}
 ' Formating help
-Archive -[hidden]d-> Trash
+'Archive -[hidden]d-> Trash
 
 skinparam WrapWidth 100 
 
@@ -76,21 +81,21 @@ rectangle "Source 2" as Source2
 rectangle "Source n" as Source3
 
 
-Brain -r-> Archive
-Inbox -r-> Trash
-Purpose -d-> Brain
-Inbox -u-> Brain
+Brain -[$style_workflow]r-> Archive
+Inbox -[$style_workflow]r-> Trash
+Brain -[$style_workflow]u-> Purpose 
+Inbox -[$style_workflow]u-> Brain
 
-Source1 -u-> Inbox
-Source2 -u-> Inbox
-Source3 -u-> Inbox
+Source1 -[$style_workflow]u-> Inbox
+Source2 -[$style_workflow]u-> Inbox
+Source3 -[$style_workflow]u-> Inbox
 
 'Interaction steps at right side 
 together {
     label "**Interaction**" as level_purpose
     label "connect & maintain" as level_brain
-    label " " as level_inbox
-    label " " as level_source
+    label "condense & enrich" as level_inbox
+    label "discover" as level_source
 }
 
 Purpose -[norank,hidden]r-> level_purpose
