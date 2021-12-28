@@ -4,12 +4,13 @@
 skinparam BackgroundColor white
 
 'Comment following line before commit
-'!$approach = "luhmann"
+'!$approach = "para"
 
 !$label ?= { 
     "purpose": "Purpose", 
     "container1": "Container 1", 
     "container2": "Container 2",
+    "container3": "",
     "inbox": "Inbox",
     "source1": "Source 1"
     } 
@@ -31,6 +32,7 @@ skinparam BackgroundColor white
     "purpose": "Learning",
     "container1": "Projects",
     "container2": "Areas",
+    "container3": "Resources",
     "inbox": "Inbox",
     "source1": "Text <u><back:yellow>excerpts</back> from books</u>, articles etc."
     }
@@ -40,21 +42,31 @@ rectangle "$label.purpose" as Purpose
 
 ' subgraph for alignment with surrounding nodes
 ' cf. http://www.forum.plantuml.net/10464/component-arrows-starting-wrong-side-component-components
-cloud Brain #white [
+collections Brain [
 External Brain
 {{
     folder "$label.container2" as c2 {
-        label c2.1 as "<size:30><&document></size>"
-        label c2.2 as "<size:30><&document></size>"
-        label c2.3 as "<size:30><&document></size>"
+        label "<size:30><&document></size>" as c2.1
+        label "<size:30><&document></size>" as c2.2
+        label "<size:30><&document></size>" as c2.3
     }
 
     folder "$label.container1" as c1 {
-        label c1.1 as "<size:30><&document></size>"
+        label "<size:30><&document></size>" as c1.1
     }
+
+    !if ($label.container3)
+        folder "$label.container3" as c3 {
+            label "<size:30><&document></size>" as c3.1
+            'file " " as c3.2
+        }
+        c3 <-[$style_workflow]-> c2
+
+    !endif
+
     c1 <-[$style_workflow]-> c2
 
-    label free1 as "<size:30><&document></size>"
+    label "<size:30><&document></size>" as free1
 
     c2.1 -[$style_connection]-> c1.1
     c1.1 -[$style_connection]-> c2.3
@@ -69,16 +81,16 @@ folder "$label.inbox" as Inbox
 
 'together {
     rectangle Trash
-    database Archive
+    folder Archive
 '}
 ' Formating help
 'Archive -[hidden]d-> Trash
 
 skinparam WrapWidth 100 
 
-rectangle "$label.source1" as Source1
-rectangle "Source 2" as Source2
-rectangle "Source n" as Source3
+artifact "$label.source1" as Source1
+artifact "Source 2" as Source2
+artifact "Source n" as Source3
 
 
 Brain -[$style_workflow]r-> Archive
