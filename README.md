@@ -1,6 +1,6 @@
 # Unified External Brain
 
-> Dieses Dokument ist zunächst nur eine Ideensammlung und Diskussionsgrundlage. 
+> Dieses Dokument ist zunächst nur eine Ideensammlung und Diskussionsgrundlage.
 
 Das Themengebiet der Selbstorganisation mit Hilfe eines digitalen Gedächtnisses hat in den vergangenen Jahren einen Boom erlebt. "Getting Things Done (GTD)", Second Brain und Zettelkästen sind hier vermutlich der berühmtesten Frameworks.
 
