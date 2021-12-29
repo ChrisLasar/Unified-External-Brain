@@ -1,0 +1,70 @@
+@startuml
+
+'left to right direction
+skinparam nodesep 1
+ 
+
+!$no_fw = 3
+!$no_core = 4
+!$no_tool = 2
+
+together {
+    !$i_fw = $no_fw
+    !while $i_fw!=0
+        circle " " as fw.$i_fw
+        !$i_fw = $i_fw - 1
+    !endwhile
+}
+
+
+!$i_fw = $no_fw
+!while $i_fw!=0
+    'Draw core nodes
+    together {
+        !$i_core = $no_core
+        !while $i_core!=0
+            circle " " as core.$i_fw.$i_core
+            !$i_core = $i_core - 1
+        !endwhile
+    }
+
+    'Draw tool nodes
+    !$i_core = $no_core
+    !while $i_core!=0
+        !$i_tool = $no_tool
+        !while $i_tool!=0
+            circle " " as core.$i_fw.$i_core.$i_tool
+            !$i_tool = $i_tool - 1
+        !endwhile
+        !$i_core = $i_core - 1
+    !endwhile
+
+    'Connect Framework with its core elements
+    !$i_core = $no_core
+    !while $i_core!=0
+        fw.$i_fw --> core.$i_fw.$i_core
+        'Connect core elements with possible tooling
+        !$i_tool = $no_tool
+        !while $i_tool!=0
+            core.$i_fw.$i_core --> core.$i_fw.$i_core.$i_tool
+            !$i_tool = $i_tool - 1
+        !endwhile
+        !$i_core = $i_core - 1
+    !endwhile
+    !$i_fw = $i_fw - 1
+!endwhile
+
+'LEGEND
+
+together {
+    label "<size:40>Framework</size>" as legend1
+    label "<size:40>Core Elements & Interaction</size>" as legend2
+    label "<size:40>Implementation</size>" as legend3
+}
+
+legend1 -[hidden]d-> legend2
+legend2 -[hidden]d-> legend3
+
+fw.1 -[hidden,norank]l-> legend1
+
+@enduml
