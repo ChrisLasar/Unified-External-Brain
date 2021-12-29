@@ -1,4 +1,4 @@
-@startuml
+@startuml overview
 !theme aws-orange
 
 skinparam BackgroundColor white
