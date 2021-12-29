@@ -1,0 +1,65 @@
+@startuml complexity
+!theme aws-orange
+
+'left to right direction
+skinparam nodesep 1
+ 
+
+!$no_fw = 3
+!$no_core = 4
+!$no_tool = 2
+
+'Frameworks
+together {
+    !$i_fw = $no_fw
+    !while $i_fw!=0
+        circle " " as fw.$i_fw
+        !$i_fw = $i_fw - 1
+    !endwhile
+}
+
+'Unified Model
+frame "Unified Model" {
+    together {
+        !$i_core = $no_core
+        !while $i_core!=0
+            circle " " as core.$i_core
+            !$i_core = $i_core - 1
+        !endwhile
+    }
+}
+
+!$i_fw = $no_fw
+!while $i_fw!=0
+    !$i_core = $no_core
+    !while $i_core!=0
+        fw.$i_fw --> core.$i_core
+        !$i_core = $i_core - 1
+    !endwhile
+    !$i_fw = $i_fw - 1
+!endwhile
+
+
+!$i_core = $no_core
+!while $i_core!=0
+    !$i_tool = $no_tool
+    !while $i_tool!=0
+        circle " " as tool.$i_core.$i_tool
+        core.$i_core --> tool.$i_core.$i_tool
+        !$i_tool = $i_tool - 1
+    !endwhile
+    !$i_core = $i_core - 1
+!endwhile
+
+together {
+    label "<size:40>Framework</size>" as legend1
+    label "<size:40>Core Elements & Interaction</size>" as legend2
+    label "<size:40>Implementation</size>" as legend3
+}
+
+legend1 -[hidden]d-> legend2
+legend2 -[hidden]d-> legend3
+
+fw.1 -[hidden,norank]l-> legend1
+
+@enduml

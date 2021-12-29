@@ -12,6 +12,10 @@ Mit dieses Frameworks einher gehen jede Menge nützliche Hinweise zur Umsetzung 
 
 Jedes Framework kommt mit einem eigenen Workflow, mit eigenen Kernelementen und seiner eigenen Beschreibung der Interaktion mit diesen Kernelementen. Hinzukommt, dass der Anwender diese Kernelemente und Interaktionen unterschiedlich umsetzen muss, je nach Tool, welches er zur Unterstützung verwendet.
 
+![Die Vielzahl paralleler Ansätze führt zu Komplexität auf der Ebene der Implementierung](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/ChrisLasar/Unified-External-Brain/main/images/complexity.puml)
+
+![Die Abbildung auf ein Model mit vereinheitlichten Kernelementen und Interaktionen vereinfacht die Wiederverwendung aus unterschiedlichen Frameworks.](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/ChrisLasar/Unified-External-Brain/main/images/simple-layers.puml)
+
 Hierdurch entsteht eine kombinatorische Explosion.
 
 Andere Motivationen, andere Workflows
